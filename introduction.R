@@ -1,0 +1,7 @@
+print(5 + 4 * 3)
+print(17)
+print(abs(-67))
+sin(45)
+sin(45*pi / 180)
+x <- sin(45 * pi / 180)
+asin(x)
