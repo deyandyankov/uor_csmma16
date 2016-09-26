@@ -7,4 +7,6 @@ A %*% b
 print(A %*% as.matrix(b))
 
 A = matrix(c(5, 0, 3, 3, 2, 1, 1, 1, 2), nrow = 3, ncol = 3)
-det(A)
+b <- as.matrix(c(-3, 2, 1), nrow = 3, ncol = 1)
+solve(A, b)
+qr(A)$rank
