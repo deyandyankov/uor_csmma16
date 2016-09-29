@@ -1,0 +1,82 @@
+---
+title: "Probability and Statistics"
+author: "Deyan Dyankov"
+date: "29 September 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Generating a normal distribution and computing its properties
+```{r}
+n <- 100
+mu <- 10
+sigma <- 0.5
+x <- rnorm(n, mu, sigma)
+```
+
+# Plot the results
+```{r}
+plot(x)
+```
+
+# Calculate mean and standard deviation in R
+```{r}
+x_mean <- sum(x) / n-1
+x_var <- sum((x - x_mean)^2 / (n-1))
+x_sd <- sqrt(x_var)
+```
+
+# Parameters
+```{r}
+df_params <- data.frame(parameter = c("n", "mu", "sigma"), value = c(n, mu, sigma))
+kable(df_params)
+```
+
+# Measures
+```{r}
+df_params <- data.frame(measure = c("mean", "variance", "standard deviation"), value = c(x_mean, x_var, x_sd))
+kable(df_params)
+```
+
+# Plot a histogram of x
+```{r}
+hist(x)
+```
+
+# Generate m datasets with sample size nn from a binomial distribution
+```{r}
+gen_binomial_means <- function(nn, m) {
+  if (m < 1) {
+    stop("m must be >= 1")
+  }
+  if (nn < 1) {
+    stop("nn must be >= 1")
+  }
+  trials <- 10
+  binom_distributions <- matrix(rbinom(m * nn, trials, 0.01), nrow = nn, ncol = m)
+  result <- apply(binom_distributions, 2, mean)
+  return(result)
+}
+
+means <- lapply(c(10, 100, 1000), gen_binomial_means, 10000)
+```
+
+# Plot histograms of the two groups of means
+```{r}
+library(ggplot2)
+df <- rbind(
+  data.frame(group = 1, x = means[[1]]),
+  data.frame(group = 2, x = means[[2]]),
+  data.frame(group = 3, x = means[[3]])
+)
+ggplot(df) +
+  geom_histogram(aes(x = x), binwidth=0.01) +
+  ggtitle("distribution of means per group") +
+  xlab("mean(x)") +
+  ylab("Frequency") +
+  facet_grid(. ~ group)
+```
