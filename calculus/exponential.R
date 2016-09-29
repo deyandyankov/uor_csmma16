@@ -2,7 +2,7 @@
 # to do the exercise one must find the maximum without optimize()
 
 myfunction <- function(t) (1 + 2.5*t) * exp(-0.3 * t)
-x <- round(seq(-1, 30, by = 0.1), 6) # [1] -1.0 -0.9 -0.8 -0.7 -0.6 -0.5
+x <- seq(-1, 30, by = 0.1) # [1] -1.0 -0.9 -0.8 -0.7 -0.6 -0.5
 y <- round(myfunction(x), 6) # [1] -2.024788 -1.637456 -1.271249 -0.925259 -0.598609 -0.290459 ...
 
 # find the maximum value of y for -1 < x < 10
