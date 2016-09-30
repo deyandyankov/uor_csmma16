@@ -80,3 +80,9 @@ ggplot(df) +
   ylab("Frequency") +
   facet_grid(. ~ group)
 ```
+
+# Effect of variance
+```{r}
+x <- rnorm(25, 1.1, 0.8)
+
+```
