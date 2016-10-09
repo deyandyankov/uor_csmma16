@@ -201,9 +201,9 @@ v_label <- paste0("(", round(t_init, 6), ", ", round(f(t_init), 6), ")")
 ggplot(df, aes(x = t, y = y)) +
         ggtitle("Optimal value") +
         ylab("y = f(t)") +
-        geom_line() +
+        geom_point() +
         geom_point(aes(x = t_init, y = f(t_init)), colour = "red") +
-        geom_text(aes(x = t_init + 8, y = f(t_init), label = v_label), colour = "red")
+        geom_text(aes(x = t_init + 7, y = f(t_init), label = v_label), colour = "red")
 ```
 
 ## Question 5
