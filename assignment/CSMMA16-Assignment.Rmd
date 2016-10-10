@@ -1,6 +1,6 @@
 ---
 title: "CSMMA16 - Assignment"
-author: "Deyan Dyankov"
+author: "Deyan Dyankov (student id 24885531)"
 date: "11 October 2016"
 header-includes:
  - \usepackage{url}
@@ -130,7 +130,7 @@ $-x_1 - x_2 - x_3 = 0$
 
 $-x_2 - 2x_3 = 0$
 
-The solutions are $x_1 = -x_2/2$, $x_2 = -2x_3$, and $x_3$ can have any value. We can then set our third eigen vector to $(-1, -2, 1)$.
+The solutions are $x_1 = \frac{-x_2}{2}$, $x_2 = -2x_3$, and $x_3$ can have any value. We can then set our third eigen vector to $(1, -2, 1)$.
 
 R is choosing different eigen vectors but they still map to our values:
 ```{r}
@@ -350,8 +350,10 @@ mean_face <- matrix(apply(faces, 1, mean), nrow = rows, ncol = cols)
 
 # used for plotting
 rotate_matrix <- function(x) t(x)[, nrow(x):1]
+```
 
-# produce an image of the mean face
+Produce an image of the mean face
+```{r}
 image(rotate_matrix(mean_face), col = grey((0:32)/32), axes = F)
 ```
 
@@ -365,8 +367,6 @@ image(rotate_matrix(diff1), col = grey((0:32)/32), axes = F)
 image(rotate_matrix(diff2), col = grey((0:32)/32), axes = F)
 image(rotate_matrix(diff3), col = grey((0:32)/32), axes = F)
 ```
-
-
 
 Based on the covariance matrix of the differences, calculate eigenfaces and produce the first three eigenfaces on the same figure.
 ```{r}
