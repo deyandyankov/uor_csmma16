@@ -1,6 +1,3 @@
-library(ggplot2)
-source("multiplot.R")
-
 # prepare the data
 x <- seq(from = -pi, to = pi, length.out = 200)
 df <- data.frame(
@@ -9,7 +6,8 @@ df <- data.frame(
         y_tan = tan(x)
 )
 
-# define the plots
+# plots
+library(ggplot2)
 # y = sin(x = pi/4), no asymptotes
 plot_sin <- ggplot(df, aes(x, y_sin)) +
         ggtitle("y = sin(x - pi/4)") +
@@ -18,7 +16,7 @@ plot_sin <- ggplot(df, aes(x, y_sin)) +
         xlim(c(-pi, pi)) +
         geom_point()
 
-# y = tan(x), asymptotes at -pi/2 and pi/2
+# y = tan(x), vertical asymptotes at -pi/2 and pi/2
 plot_tan <- ggplot(df, aes(x, y_tan)) +
         ggtitle("y = tan(x)") +
         ylab("y") +
@@ -29,4 +27,5 @@ plot_tan <- ggplot(df, aes(x, y_tan)) +
         geom_vline(xintercept = pi/2, col = "red", linetype = "dashed")
 
 # display plots
+source("multiplot.R")
 multiplot(plot_sin, plot_tan, cols=2)
